@@ -4,18 +4,18 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  mode: 'development',  /*ou production*/
-  entry: '../../src/index.js',
+  mode: 'development',
+  entry: path.resolve(__dirname, './src/index.js'),
   output: {
-    path: path.resolve(__dirname, './dist'), /*va créer le folder qui contiendra le index.html et les bundle*/
-    filename: 'bundle.js', /*nom du bundle*/
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundle.js',
   },
-  devServer: { /*configuration du dev server*/
+  devServer: {
     static: {
       directory: path.join(__dirname, "./dist"),
       serveIndex: true,
     },
-    open: true, /* va ouvrir seul le index.html*/
+    open: true,
     hot: true
   },
   devtool: 'inline-source-map',
@@ -23,13 +23,18 @@ module.exports = {
     rules: [
       { 
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"], /*va compiler les fichiers css*/
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
-        loader: 'image-webpack-loader',/*va compiler les images*/
+        loader: 'image-webpack-loader',
         enforce: 'pre'
+      },
+      {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
       },
     ],
   },
@@ -37,13 +42,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Holberton Dashboard',
   }),
-    new CleanWebpackPlugin() /*nettoie le dossier public si je recompile*/
+    new CleanWebpackPlugin()
   ],
   optimization: {
     splitChunks: {
-      chunks: 'all', /*doit compresser les bundle*/
+      chunks: 'all',
     },
-    minimizer: [new UglifyJsPlugin()], /*for minification of the code*/
+    minimizer: [new UglifyJsPlugin()],
 
   }
 };
