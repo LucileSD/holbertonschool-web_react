@@ -1,5 +1,5 @@
-import logo from '../assets/logo.jpg';
 import './App.css';
+import logo from '../assets/logo.jpg';
 import { getFullYear } from '../utils/utils';
 import { getFooterCopy } from '../utils/utils';
 
