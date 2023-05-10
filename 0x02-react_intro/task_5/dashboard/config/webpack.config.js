@@ -5,7 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: path.resolve(__dirname, './src/index.js'),
+  entry: path.resolve(__dirname, '../src/index.js'),
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
@@ -27,27 +27,41 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-        loader: 'image-webpack-loader',
-        enforce: 'pre'
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true,
+              disable: true,
+            },
+          },
+        ],
       },
       {
-        test: /\.(js)$/,
+        test: /\.(?:js|mjs|cjs)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', { targets: "defaults" }]
+            ],
+            plugins: ['@babel/plugin-proposal-class-properties']
+          }
+        }
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Holberton Dashboard',
+      template: './src/index.html',
+      inject: false
   }),
     new CleanWebpackPlugin()
   ],
   optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
     minimizer: [new UglifyJsPlugin()],
 
   }
