@@ -56,7 +56,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Holberton Dashboard',
-      template: './src/index.html',
+      template: './dist/index.html',
       inject: false
   }),
     new CleanWebpackPlugin()
