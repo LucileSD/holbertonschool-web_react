@@ -3,7 +3,7 @@
   border-color: rgb(237, 100, 100);
   padding: 2%;
   font-weight: bold;
-  margin-left: 65%;
+  float: right;
 }
 
 button img {

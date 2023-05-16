@@ -3,7 +3,7 @@ import React from 'react';
 export default function CourseListRow(props) {
   if (props.isHeader === true) {
     if (props.textSecondCell === null) {
-      return <><th colSpan="2">{props.textFirstCell}</th></>
+      return <><th colspan="2">{props.textFirstCell}</th></>
     } else {
       return <>
               <th>{props.textFirstCell}</th>
