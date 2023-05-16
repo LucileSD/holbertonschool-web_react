@@ -6,30 +6,30 @@
   margin-right: 5%;
 }
 
-thead {
+thead tr {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(2, 65%);
 }
 
-thead th[colspan=2] {
+thead tr th[colspan=2] {
   grid-column: 2/2;
   display: flex;
   border-bottom: 1px solid lightgray;
 }
 
-tbody {
+tbody tr {
   border-top: 1px solid lightgray;
   display: grid;
   grid-template-columns: repeat(2, 65%);
 }
 
-th {
+tr th {
   display: flex;
   justify-content: flex-start;
 }
 
-th:first-child {
+thead tr th:first-child {
   padding-left: 65%;
   border-bottom: 1px solid lightgray;
 }
