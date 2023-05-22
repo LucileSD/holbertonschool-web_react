@@ -1,6 +1,7 @@
 import React from "react";
 import BodySection from "./BodySection";
 import './BodySection.css';
+import Proptypes from 'prop-types';
 
 class BodySectionWithMarginBottom extends React.Component {
   render() {
@@ -11,5 +12,13 @@ class BodySectionWithMarginBottom extends React.Component {
     </>
   };
 }
+
+BodySectionWithMarginBottom.propTypes = {
+  title: Proptypes.string,
+};
+
+BodySectionWithMarginBottom.defaultProps = {
+  title: '',
+};
 
 export default BodySectionWithMarginBottom;
