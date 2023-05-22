@@ -17,7 +17,7 @@ const listNotifications = [
   { id: 1, value: 'New course available', type: 'default' },
   { id: 2, value: 'New resume available', type: 'urgent' },
   { id: 3, html: { __html: getLatestNotification() }, type: 'urgent' },
-]
+];
 
 class App extends React.Component {
   render() {
