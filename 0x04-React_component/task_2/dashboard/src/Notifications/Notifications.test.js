@@ -49,6 +49,14 @@ describe('<Notifications />', () => {
   });
 
   it('should console.log Notification ${id} has been marked as read', () => {
-  })
-  
+    const log = jest.spyOn(console, 'log');
+    const listNotifications = [
+      { id: 1, value: 'New course available', type: 'default' },
+      { id: 2, value: 'New resume available', type: 'urgent' },
+      { id: 3, html: { __html: getLatestNotification() }, type: 'urgent' },];
+    const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={ listNotifications }/>);
+    wrapper.instance().markAsRead(2);
+    expect(log.mock.calls[0][0]).toEqual("Notification 2 has been marked as read");
+    jest.restoreAllMocks();
+  });
 })
