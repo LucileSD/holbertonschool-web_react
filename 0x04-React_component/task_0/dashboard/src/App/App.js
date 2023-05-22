@@ -1,11 +1,11 @@
-import Notifications from '../Notifications/Notifications';
-import Login from '../Login/Login';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
 import CourseList from '../CourseList/CourseList';
+import Footer from '../Footer/Footer';
 import { getLatestNotification } from '../utils/utils';
-import React from 'react';
+import Header from '../Header/Header';
+import Login from '../Login/Login';
+import Notifications from '../Notifications/Notifications';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const listCourses = [
   {id: 1, name: 'ES6', credit: 60},
