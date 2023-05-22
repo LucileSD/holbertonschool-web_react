@@ -1,3 +1,5 @@
+import BodySection from '../BodySection/BodySection';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 import Notifications from '../Notifications/Notifications';
 import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
@@ -47,7 +49,12 @@ class App extends React.Component {
         <div className='App'>
           <Header></Header>
           <div className="App-body">
-            { this.props.isLoggedIn ? <CourseList listCourses={listCourses} /> : <Login /> }
+            { this.props.isLoggedIn ?
+              <BodySectionWithMarginBottom title={'Course list'}><CourseList listCourses={listCourses} /> </BodySectionWithMarginBottom>
+              : <BodySectionWithMarginBottom title={'Log in to continue'}><Login /></BodySectionWithMarginBottom> }
+            <BodySection title={'News from the School'}>
+              <p>Lorem ipsum</p>
+            </BodySection>
           </div>
           <Footer></Footer>
         </div>

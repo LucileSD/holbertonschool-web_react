@@ -12,7 +12,7 @@ class BodySection extends React.Component {
   }
 }
 
-BodySection.PropTypes = {
+BodySection.propTypes = {
   title: PropTypes.string,
 };
 
