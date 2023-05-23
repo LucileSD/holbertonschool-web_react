@@ -29,5 +29,5 @@ describe('<NotificationItem />', () => {
     instance.markAsRead(id);
     expect(instance.markAsRead).toHaveBeenCalledWith(1);
     jest.restoreAllMocks();
-  })
+  });
 })
