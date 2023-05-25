@@ -1,10 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { getLatestNotification } from '../utils/utils';
-
+import { StyleSheetTestUtils } from 'aphrodite';
 import Notifications from './Notifications';
 
 describe('<Notifications />', () => {
+  beforeEach(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+
   it('renders without crashing', () => {
     shallow(<Notifications />);
   });
@@ -16,17 +20,17 @@ describe('<Notifications />', () => {
     expect(wrapper.find('NotificationItem')).toHaveLength(3);
   });
 
-/*  it('renders the text: Here is the list of notifications', () => {
+  it('renders the text: Here is the list of notifications', () => {
     const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={[{ id: 1, value: 'New course available', type: 'default' },
     { id: 2, value: 'New resume available', type: 'urgent' },
     { id: 3, html: { __html: getLatestNotification() }, type: 'urgent' },]}/>);
-    expect(wrapper.find('div.menuItemP_hq5slr').text()).toEqual('Here is the list of notifications');
+    expect(wrapper.find('p.menuItemP_hq5slr').text()).toEqual('Here is the list of notifications');
   });
 
   it('verifies that the first NotificationItem element renders the right html', () => {
-    const wrapper = shallow(<Notifications displayDrawer={true}/>);
-    expect(wrapper.find('div.menuItemP_hq5slr').text()).toEqual('No new notification for now')
-  });*/
+    const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={[]}/>);
+    expect(wrapper.find('p.menuItemP_hq5slr').text()).toEqual('No new notification for now')
+  });
 
   it('check that the menu item is being displayed when displayDrawer is false', () => {
     const wrapper = shallow(<Notifications />);
@@ -90,5 +94,9 @@ describe('<Notifications />', () => {
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveLastReturnedWith(true);
     jest.restoreAllMocks();
-  })
+  });
+
+  afterEach(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
 })
