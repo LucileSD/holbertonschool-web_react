@@ -57,7 +57,9 @@ class App extends React.Component {
               <p>Lorem ipsum</p>
             </BodySection>
           </div>
-          <Footer></Footer>
+          <div className={css(style.footer)}>
+            <Footer></Footer>
+          </div>
         </div>
       </React.Fragment>
     )
@@ -81,6 +83,13 @@ const style = StyleSheet.create({
 
   appBody: {
     height: '500px',
+  },
+  footer: {
+    display: 'flex',
+    textAlign: 'center',
+    flexDirection: 'column',
+    fontStyle: 'italic',
+    borderTop: 'solid 2px #eb4034',
   }
 });
 
