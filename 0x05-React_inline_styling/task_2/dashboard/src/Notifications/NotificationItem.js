@@ -4,17 +4,16 @@ import { StyleSheet, css } from 'aphrodite';
 
 class NotificationItem extends React.PureComponent {
   render() {
-    const styleItem = this.props.type === 'default' ? styles.priorityDefault : styles.priorityUrgent;
     if (this.props.html) {
       return <li
         onClick={() => this.props.markAsRead(this.props.id)}
         data-priority={this.props.type} dangerouslySetInnerHTML={this.props.html}
-        className={css(styleItem)}>
+        className={css(this.props.type === 'default' ? styles.priorityDefault : styles.priorityUrgent)}>
       </li>
     } else {
       return <li
         onClick={() => this.props.markAsRead(this.props.id)}
-        data-priority={this.props.type} className={css(styleItem)}>
+        data-priority={this.props.type} className={css(this.props.type === 'default' ? styles.priorityDefault : styles.priorityUrgent)}>
         {this.props.value}
       </li>
     }
