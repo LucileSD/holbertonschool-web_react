@@ -14,7 +14,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --maxWorkers=1",
     "webpack-dev-server": "webpack-dev-server --config ./config/webpack.config.js",
     "start-dev": "webpack-dev-server --open",
     "dev": "webpack serve --mode development",
