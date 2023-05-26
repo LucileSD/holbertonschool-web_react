@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { styles } from './CourseList';
-import { css } from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite';
 
 const rowStyle = {
   backgroundColor: '#f5f5f5ab',
@@ -39,3 +38,25 @@ CourseListRow.defaultProps = {
   isHeader: false,
   textSecondCell: null,
 };
+
+const styles = StyleSheet.create({
+  generalThead: {
+    display: 'grid',
+    width: '100%',
+    gridTemplateColumns: 'repeat(2, 50%)',
+  },
+  colspan: {
+    gridColumn: '1/2',
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  generalTrBody: {
+    borderTop: '1px solid lightgray',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 50%)',
+  },
+  generalTh: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+  },
+});

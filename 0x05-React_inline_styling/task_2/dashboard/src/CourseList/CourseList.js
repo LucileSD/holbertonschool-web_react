@@ -31,7 +31,7 @@ CourseList.defaultProps = {
   listCourses: [],
 };
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   general: {
     width: '90%',
     border: '1px solid lightgray',
@@ -39,23 +39,4 @@ export const styles = StyleSheet.create({
     marginLeft: '5%',
     marginRight: '5%',
   },
-  generalThead: {
-    display: 'grid',
-    width: '100%',
-    gridTemplateColumns: 'repeat(2, 50%)',
-  },
-  colspan: {
-    gridColumn: '1/2',
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-  generalTrBody: {
-    borderTop: '1px solid lightgray',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, 50%)',
-  },
-  generalTh: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-  }
-})
+});
