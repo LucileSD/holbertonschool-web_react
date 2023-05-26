@@ -3,7 +3,7 @@ import { StyleSheet, css } from 'aphrodite';
 
 function Header() {
   return (
-      <div className={css(styles.AppHeader)}>
+      <div className={css(styles.header)}>
         <img src={logo} className={css(styles.AppLogo)} alt="logo" />
         <h1 className={css(styles.AppHeaderH1)}>
           School dashboard
@@ -13,7 +13,7 @@ function Header() {
 }
 
 const styles = StyleSheet.create({
-  AppHeader: {
+  header: {
     display: 'flex',
     alignItems: 'center',
     borderBottom: 'solid 2px #eb4034'
