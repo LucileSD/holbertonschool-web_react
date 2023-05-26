@@ -49,7 +49,7 @@ class App extends React.Component {
         <Notifications listNotifications={listNotifications}/>
         <div className={css(style.app)}>
           <Header></Header>
-          <div className={css(style.appBody)}>
+          <div className={css(style.body)}>
             { this.props.isLoggedIn ?
               <BodySectionWithMarginBottom title={'Course list'}><CourseList listCourses={listCourses} /> </BodySectionWithMarginBottom>
               : <BodySectionWithMarginBottom title={'Log in to continue'}><Login /></BodySectionWithMarginBottom> }
@@ -57,7 +57,9 @@ class App extends React.Component {
               <p>Lorem ipsum</p>
             </BodySection>
           </div>
-          <Footer></Footer>
+          <div className={css(style.footer)}>
+            <Footer></Footer>
+          </div>
         </div>
       </React.Fragment>
     )
@@ -79,9 +81,17 @@ const style = StyleSheet.create({
     fontFamily: 'Arial, Helvetica, sans-serif',
   },
 
-  appBody: {
+  body: {
     height: '500px',
-  }
+  },
+
+  footer: {
+    display: 'flex',
+    textAlign: 'center',
+    flexDirection: 'column',
+    fontStyle: 'italic',
+    borderTop: 'solid 2px #eb4034',
+  },
 });
 
 export default App;

@@ -1,4 +1,3 @@
-import './Footer.css';
 import { getFullYear } from '../utils/utils';
 import { getFooterCopy } from '../utils/utils';
 
