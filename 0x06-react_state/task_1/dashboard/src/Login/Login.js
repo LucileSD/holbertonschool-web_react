@@ -47,7 +47,7 @@ class Login extends React.Component {
             <input type="email" name="email" id="email" value={this.state.email} onChange={this.handleChangeEmail}></input>
             <label htmlFor="pwd" className={css(styles.loginLabel)}>Password: </label>
             <input type="password" name="pwd" id="pwd" value={this.state.password} onChange={this.handleChangePassword}></input>
-            <input type="submit" value="OK" className={css(styles.loginButton)} disabled={!this.state.enableSubmit}></input>
+            <input type="submit" name="button" value="OK" className={css(styles.loginButton)} disabled={!this.state.enableSubmit}></input>
           </form>
         </div>
       </React.Fragment>
