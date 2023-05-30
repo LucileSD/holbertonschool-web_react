@@ -1,7 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { StyleSheetTestUtils } from 'aphrodite';
 import Header from './Header';
+import { AppContext } from '../App/AppContext';
 
 describe('<Header />', () => {
   beforeEach(() => {
@@ -21,6 +22,11 @@ describe('<Header />', () => {
     const wrapper = shallow(<Header />);
     expect(wrapper.find('h1')).toHaveLength(1);
   });
+
+  it('should not create logoutSection', () => {
+    const wrapper = shallow(<Header />);
+    expect(wrapper.find('#logoutSection')).toHaveLength(0);
+  })
 
   afterEach(() => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();

@@ -15,7 +15,7 @@ class Header extends React.Component {
           School dashboard
         </h1>
         {this.context.user && this.context.user.isLoggedIn && (
-          <p className={css(styles.welcome)}>Welcome{' '} <b>{this.context.user.email}</b><span onClick={this.context.logOut}>(logout)</span></p>
+          <p id='logoutSection' className={css(styles.welcome)}>Welcome{' '} <b>{this.context.user.email}</b><span onClick={this.context.logOut}>(logout)</span></p>
         )}
       </div>
     );
