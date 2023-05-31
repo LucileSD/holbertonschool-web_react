@@ -47,8 +47,9 @@ class App extends React.Component {
 
   handleKey = e => {
     if (e.key == 'h' && e.ctrlKey) {
+      e.preventDefault();
       alert('Logging you out');
-      this.props.logOut();
+      this.state.logOut();
     }
   }
 
@@ -69,7 +70,11 @@ class App extends React.Component {
   }
 
   logOut = () => {
-    this.setState({ user: {} })
+    this.setState({ user: {
+      email: '',
+      password: '',
+      isLoggedIn: false,
+    } })
   }
 
   markNotificationAsRead = (id) => {
@@ -84,10 +89,11 @@ class App extends React.Component {
   }
 
   render() {
+    const {displayDrawer, listNotifications, user, logOut} = this.state;
     return (
-      <AppContext.Provider value={{ user: this.state.user, logOut: this.state.logOut }}>
-        <Notifications listNotifications={this.state.listNotifications}
-                       displayDrawer={this.state.displayDrawer}
+      <AppContext.Provider value={{ user, logOut }}>
+        <Notifications listNotifications={listNotifications}
+                       displayDrawer={displayDrawer}
                        handleDisplayDrawer={this.handleDisplayDrawer}
                        handleHideDrawer={this.handleHideDrawer}
                        markNotificationAsRead={this.markNotificationAsRead}/>

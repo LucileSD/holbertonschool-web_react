@@ -1,12 +1,14 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { StyleSheetTestUtils } from 'aphrodite';
 import App from './App';
 import Notifications from '../Notifications/Notifications';
 import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import CourseList from '../CourseList/CourseList';
 import { getLatestNotification } from '../utils/utils';
+import { user, logOut, AppContext } from '../App/AppContext';
 
 describe('<App />', () => {
   beforeEach(() => {
@@ -47,27 +49,21 @@ describe('<App />', () => {
     expect(wrapper.find('CourseList')).toHaveLength(0);
   });
 
-  /*it('should verify that the Login component is not included', () => {
-    const wrapper = shallow(<App />);
-    wrapper.setState({ isLoggedIn: true});
-    expect(wrapper.find('Login')).toHaveLength(0);
-    expect(wrapper.find('CourseList')).toHaveLength(1);
-  });*/
+  it('should verify that the Login component is not included', () => {
+    const wrapper = shallow(<App/>);
+    wrapper.setState({ user: {email: 'de@de.de', password:'123', isLoggedIn: true}})
+    expect(wrapper.contains('Login')).toBe(false);
+    expect(wrapper.contains('CourseList'));
+  });
 
   it('calls an alert when keys Ctrl and H are pressed', () => {
-    const events = {};
     window.alert = jest.fn();
-    window.addEventListener = jest.fn().mockImplementation((event, cb) => {
-      events[event] = cb;
-    });
-
-    const logOut = jest.fn();
-    shallow(<App logOut={logOut} />);
-    events.keydown({ ctrlKey: true, key: 'h' });
-
+    const wrapper = mount(<App />);
+    wrapper.setState({ user: {isLoggedIn: true}});
+    const event = new KeyboardEvent('keydown', { key: 'h', ctrlKey: true });
+    window.dispatchEvent(event);
     expect(window.alert).toHaveBeenCalledWith('Logging you out');
-    expect(logOut).toHaveBeenCalled();
-
+    expect(wrapper.state().user.isLoggedIn).toBe(false);
     jest.restoreAllMocks();
   });
 
@@ -87,7 +83,14 @@ describe('<App />', () => {
     wrapper.setState({ displayDrawer: true });
     wrapper.instance().handleHideDrawer();
     expect(wrapper.state('displayDrawer')).toEqual(false);
-  })
+  });
+
+  it('should updates the state when logIn is called', () => {
+    const wrapper = mount(<App/>);
+    wrapper.setState({ user: {email: 'de@de.de', password:'123', isLoggedIn: true}});
+    wrapper.instance().logOut();
+    expect(wrapper.state().user.isLoggedIn).toBe(false);
+  });
 
   afterEach(() => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
