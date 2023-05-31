@@ -28,11 +28,12 @@ class Notifications extends React.Component {
   }
 
   render() {
+    const { handleDisplayDrawer, handleHideDrawer } = this.props
     return <>
-      <div className={css(styles.menuItem)}><p className={css(styles.animeBounce, styles.animeOpacity)} onClick={this.props.handleDisplayDrawer}>Your notifications</p></div>
+      <div className={css(styles.menuItem)}><p className={css(styles.animeBounce, styles.animeOpacity)} onClick={handleDisplayDrawer}>Your notifications</p></div>
       {this.props.displayDrawer && (
         <div className={css(styles.notifications, styles.smallNotifications)}>
-              <button id='closeButton' aria-label='Close' style={{float: 'right', border: 'none'}} onClick={this.props.handleHideDrawer}><img src={closeIcon} alt='close' className={css(styles.imgButton)}></img></button>
+              <button id='closeButton' aria-label='Close' style={{float: 'right', border: 'none'}} onClick={handleHideDrawer}><img src={closeIcon} alt='close' className={css(styles.imgButton)}></img></button>
               {this.props.listNotifications.length > 0 ? (<>
               <p className={css(styles.menuItemP)}>Here is the list of notifications</p>
               <ul className={css(styles.smallUl)}>
