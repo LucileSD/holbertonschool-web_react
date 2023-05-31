@@ -29,7 +29,7 @@ class Notifications extends React.Component {
 
   render() {
     return <>
-      <div className={css(styles.menuItem)} onClick={this.props.handleDisplayDrawer}><p className={css(styles.animeBounce, styles.animeOpacity)}>Your notifications</p></div>
+      <div className={css(styles.menuItem)}><p className={css(styles.animeBounce, styles.animeOpacity)} onClick={this.props.handleDisplayDrawer}>Your notifications</p></div>
       {this.props.displayDrawer && (
         <div className={css(styles.notifications, styles.smallNotifications)}>
               <button id='closeButton' aria-label='Close' style={{float: 'right', border: 'none'}} onClick={this.props.handleHideDrawer}><img src={closeIcon} alt='close' className={css(styles.imgButton)}></img></button>

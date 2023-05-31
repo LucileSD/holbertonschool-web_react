@@ -95,7 +95,7 @@ describe('<Notifications />', () => {
   it('should call handleDisplayDrawer after clicking on the menu item', () => {
     const handleDisplayDrawer = jest.fn();
     const wrapper = shallow(<Notifications displayDrawer handleDisplayDrawer={handleDisplayDrawer}/>);
-    wrapper.find('div.menuItem_4rj5io').simulate('click');
+    wrapper.find('p.animeBounce_dhc7mf-o_O-animeOpacity_6biaj2').simulate('click');
     expect(handleDisplayDrawer).toHaveBeenCalled();
     jest.restoreAllMocks();
   });
