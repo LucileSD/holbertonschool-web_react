@@ -24,7 +24,7 @@ describe('<CourseListRow/>', () => {
 
   it('test when isHeader is false', () => {
     const wrapper = shallow(<CourseListRow isHeader={false} textFirstCell="Course name" textSecondCell="Credit"/>);
-    expect(wrapper.html()).toContain("<td>Course name</td><td>Credit</td>");
+    expect(wrapper.html()).toContain("<tr class=\"generalTrBody_1moduum\"><td><input type=\"checkbox\" name=\"check\"/>Course name</td><td>Credit</td></tr>");
   });
 
   afterEach(() => {

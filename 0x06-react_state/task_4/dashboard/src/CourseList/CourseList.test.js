@@ -19,7 +19,7 @@ describe('<CourseList />', () => {
       {id: 3, name: 'React', credit: 40}
     ]} />);
     expect(wrapper.html()).toEqual(
-      "<table id=\"CourseList\" class=\"general_1lsn12o\"><thead><tr class=\"generalThead_ewt1bg\"><th colSpan=\"2\" class=\"colspan_10pd9d0\">Available courses</th></tr><tr style=\"background-color:#deb5b545\" class=\"generalThead_ewt1bg\"><th class=\"generalTh_bwhx0f\">Course name</th><th class=\"generalTh_bwhx0f\">Credit</th></tr></thead><tbody><tr class=\"generalTrBody_1moduum\"><td>ES6</td><td>60</td></tr><tr style=\"background-color:#f5f5f5ab\" class=\"generalTrBody_1moduum\"><td>Webpack</td><td>20</td></tr><tr class=\"generalTrBody_1moduum\"><td>React</td><td>40</td></tr></tbody></table>"
+      "<table id=\"CourseList\" class=\"general_1lsn12o\"><thead><tr class=\"generalThead_ewt1bg\"><th colSpan=\"2\" class=\"colspan_10pd9d0\">Available courses</th></tr><tr style=\"background-color:#deb5b545\" class=\"generalThead_ewt1bg\"><th class=\"generalTh_bwhx0f\">Course name</th><th class=\"generalTh_bwhx0f\">Credit</th></tr></thead><tbody><tr class=\"generalTrBody_1moduum\"><td><input type=\"checkbox\" name=\"check\"/>ES6</td><td>60</td></tr><tr style=\"background-color:#f5f5f5ab\" class=\"generalTrBody_1moduum\"><td><input type=\"checkbox\" name=\"check\"/>Webpack</td><td>20</td></tr><tr class=\"generalTrBody_1moduum\"><td><input type=\"checkbox\" name=\"check\"/>React</td><td>40</td></tr></tbody></table>"
     );
     expect(wrapper.find('CourseListRow')).toHaveLength(5);
   });
