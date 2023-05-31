@@ -46,6 +46,7 @@ class App extends React.Component {
 
   handleKey = e => {
     if (e.key == 'h' && e.ctrlKey) {
+      e.preventDefault();
       alert('Logging you out');
       this.state.logOut();
     }
