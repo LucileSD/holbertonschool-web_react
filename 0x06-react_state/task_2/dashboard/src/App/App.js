@@ -47,7 +47,7 @@ class App extends React.Component {
   handleKey = e => {
     if (e.key == 'h' && e.ctrlKey) {
       alert('Logging you out');
-      this.props.logOut();
+      this.state.logOut();
     }
   }
 
@@ -68,7 +68,11 @@ class App extends React.Component {
   }
 
   logOut = () => {
-    this.setState({ user: {} })
+    this.setState({ user: {
+      email: '',
+      password: '',
+      isLoggedIn: false,
+    } })
   }
 
   componentWillUnmount() {
