@@ -92,6 +92,13 @@ describe('<App />', () => {
     expect(wrapper.state().user.isLoggedIn).toBe(false);
   });
 
+  it('should verify that markNotificationAsRead deletes 1 notification', () => {
+    const wrapper = mount(<App />);
+    expect(wrapper.state().listNotifications.length).toEqual(3);
+    wrapper.instance().markNotificationAsRead(2);
+    expect(wrapper.state().listNotifications.length).toEqual(2);
+  });
+
   afterEach(() => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
   });
