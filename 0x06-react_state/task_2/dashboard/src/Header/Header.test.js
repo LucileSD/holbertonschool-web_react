@@ -31,7 +31,7 @@ describe('<Header />', () => {
     expect(wrapper.find('#logoutSection')).toHaveLength(0);
   });
 
-  it('should not created logoutSection', () => {
+  it('should created logoutSection', () => {
     const wrapper = mount(
       <AppContext.Provider value={{ user: { ...user, isLoggedIn: true}, logOut }}>
           <Header />
