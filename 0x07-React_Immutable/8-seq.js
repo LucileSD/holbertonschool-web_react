@@ -11,7 +11,7 @@ export default function printBestStudents(object) {
   Object.keys(newObj).map(item => {
     newObj[item].firstName = capitalize(newObj[item].firstName);
     newObj[item].lastName = capitalize(newObj[item].lastName);
-  })
+  });
 
   console.log(newObj);
 }
