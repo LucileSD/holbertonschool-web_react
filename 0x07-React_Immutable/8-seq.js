@@ -4,7 +4,7 @@ export default function printBestStudents(object) {
   const capitalize = (name) => name.charAt(0).toUpperCase() + name.slice(1);
 
   const newSequence = Seq(object)
-    .filter(x => x.score > 70)
+    .filter((x) => x.score > 70)
     .map((item) => {
       return {
         ...item,
