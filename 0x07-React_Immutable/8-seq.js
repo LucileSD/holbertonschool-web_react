@@ -5,13 +5,11 @@ export default function printBestStudents(object) {
 
   const newSequence = Seq(object)
     .filter((x) => x.score > 70)
-    .map((item) => {
-      return {
-        ...item,
-        firstName: capitalize(item.firstName),
-        lastName: capitalize(item.lastName),
-      };
-    }).toJS();
+    .map((item) => ({
+      ...item,
+      firstName: capitalize(item.firstName),
+      lastName: capitalize(item.lastName),
+    })).toJS();
 
   console.log(newSequence);
 }
