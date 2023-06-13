@@ -8,9 +8,11 @@ export default function printBestStudents(grades) {
 
   const newObj = newSequence.toJS();
 
+  const capitalize = (name) => name.charAt(0).toUpperCase() + name.slice(1);
+
   Object.keys(newObj).map(item => {
-    newObj[item].firstName = newObj[item].firstName.charAt(0).toUpperCase() + newObj[item].firstName.slice(1);
-    newObj[item].lastName = newObj[item].lastName.charAt(0).toUpperCase() + newObj[item].lastName.slice(1);
+    newObj[item].firstName = capitalize(newObj[item].firstName);
+    newObj[item].lastName = capitalize(newObj[item].lastName);
   })
 
   console.log(newObj);
