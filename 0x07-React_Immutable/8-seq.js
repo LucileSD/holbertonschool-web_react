@@ -3,7 +3,7 @@ import { Seq } from 'immutable';
 export function printBestStudents(grades) {
   const newSequence = Seq(grades)
     .filter((x) => {
-      return x.score > 70
+      return x.score > 70;
     });
 
   const newObj = newSequence.toJS();
