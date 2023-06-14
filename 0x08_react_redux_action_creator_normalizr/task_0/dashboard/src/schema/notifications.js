@@ -1,4 +1,4 @@
-import * as data from '../../notifications.json';
+import * as data from '../../../../notifications.json';
 
 const getAllNotificationsByUser = (userId) => {
   let list = [];
