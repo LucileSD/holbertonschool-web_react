@@ -7,12 +7,11 @@ module.exports = {
   mode: 'development',
   entry: path.resolve(__dirname, '../src/index.js'),
   output: {
-    path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, "./dist"),
+      directory: path.join(__dirname, "../dist"),
       serveIndex: true,
     },
     open: true,

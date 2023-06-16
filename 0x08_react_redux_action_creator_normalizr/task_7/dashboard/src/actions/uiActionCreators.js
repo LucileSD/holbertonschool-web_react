@@ -1,6 +1,4 @@
 import { LOGIN, LOGOUT, DISPLAY_NOTIFICATION_DRAWER, HIDE_NOTIFICATION_DRAWER, LOGIN_SUCCESS, LOGIN_FAILURE } from "./uiActionTypes";
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 
 const login = (email, password) => {
   return {
@@ -46,7 +44,7 @@ const loginFailure = () => {
 const loginRequest = (email, password) => {
   return (dispatch) => {
     dispatch(login(email, password));
-    return fetch('../../dist/login-success.json')
+    return fetch('http://localhost:8080/login-success.json')
       .then((res) => res.json())
       .then((json) => dispatch(loginSuccess()))
       .catch((err) => dispatch(loginFailure()));
