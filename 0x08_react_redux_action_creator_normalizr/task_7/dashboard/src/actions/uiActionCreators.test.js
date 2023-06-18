@@ -30,4 +30,36 @@ describe('test for UI actions', () => {
     const expectedResult = {type: 'HIDE_NOTIFICATION_DRAWER'};
     expect(result).toEqual(expectedResult);
   });
+
+  it.skip('should login success action', () => {
+    const middlewares = [thunk];
+    const mockStore = configureStore(middlewares);
+    const store = mockStore({});
+    fetchMock.restore();
+    fetchMock.get('http://localhost:8080/login-success.json', '{}');
+    return store.dispatch(loginRequest('email', 'password')).then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: 'LOGIN',
+        user: { email: 'email', password: 'password' },
+      });
+      expect(actions[1]).toEqual({ type: 'LOGIN_SUCCESS' });
+    });
+  });
+
+  it.skip('should return login failure action', () => {
+    const middlewares = [thunk];
+    const mockStore = configureStore(middlewares);
+    const store = mockStore({});
+    fetchMock.restore();
+    fetchMock.get('http://localhost:8080/login-success.json', 500);
+    return store.dispatch(loginRequest('email', 'password')).then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: 'LOGIN',
+        user: { email: 'email', password: 'password' },
+      });
+      expect(actions[1]).toEqual({ type: 'LOGIN_SUCCESS' });
+    });
+  });
 })
