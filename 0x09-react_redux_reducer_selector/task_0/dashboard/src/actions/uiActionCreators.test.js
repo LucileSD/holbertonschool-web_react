@@ -31,7 +31,7 @@ describe('test for UI actions', () => {
     expect(result).toEqual(expectedResult);
   });
 
-  it.skip('should login success action', () => {
+  it('should login success action', () => {
     const middlewares = [thunk];
     const mockStore = configureStore(middlewares);
     const store = mockStore({});
@@ -47,7 +47,7 @@ describe('test for UI actions', () => {
     });
   });
 
-  it.skip('should return login failure action', () => {
+  it('should return login failure action', () => {
     const middlewares = [thunk];
     const mockStore = configureStore(middlewares);
     const store = mockStore({});
@@ -59,7 +59,7 @@ describe('test for UI actions', () => {
         type: 'LOGIN',
         user: { email: 'email', password: 'password' },
       });
-      expect(actions[1]).toEqual({ type: 'LOGIN_SUCCESS' });
+      expect(actions[1]).toEqual({ type: 'LOGIN_FAILURE' });
     });
   });
 })
