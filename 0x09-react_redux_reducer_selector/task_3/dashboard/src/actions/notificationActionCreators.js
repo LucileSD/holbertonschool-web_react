@@ -1,4 +1,8 @@
-import { MARK_AS_READ, SET_TYPE_FILTER } from "./notificationActionTypes";
+import {
+  MARK_AS_READ,
+  SET_TYPE_FILTER,
+  FETCH_NOTIFICATIONS_SUCCESS
+} from "./notificationActionTypes";
 
 export const markAsAread = (index) => {
   return {
@@ -12,4 +16,11 @@ export const setNotificationFilter = (filter) => {
     type: SET_TYPE_FILTER,
     filter,
   };
+}
+
+export const fetchNotifications = (data) => {
+  return {
+    type: FETCH_NOTIFICATIONS_SUCCESS,
+    data,
+  }
 }

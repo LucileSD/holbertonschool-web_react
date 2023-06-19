@@ -1,4 +1,4 @@
-import { courseReducer, initi } from "./courseReducer";
+import { courseReducer } from "./courseReducer";
 import { fetchCourse, selectCourse, unSelectCourse } from "../actions/courseActionCreators";
 
 describe('tests for courseReducer', () => {
