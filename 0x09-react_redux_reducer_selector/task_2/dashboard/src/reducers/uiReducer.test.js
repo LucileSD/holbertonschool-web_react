@@ -1,5 +1,5 @@
 import { reducer } from './uiReducer';
-import { displayNotificationDrawer, loginSuccess } from '../actions/uiActionCreators';
+import { displayNotificationDrawer } from '../actions/uiActionCreators';
 import { Map } from 'immutable';
 
 describe('test for reducer function', () => {

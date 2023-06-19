@@ -1,4 +1,4 @@
-import { SELECT_COURSE, UNSELECT_COURSE } from "./courseActionTypes";
+import { SELECT_COURSE, UNSELECT_COURSE, FETCH_COURSE_SUCCESS } from "./courseActionTypes";
 
 const selectCourse = (index) => {
   return {
@@ -14,4 +14,11 @@ const unSelectCourse = (index) => {
   }
 }
 
-export { selectCourse, unSelectCourse };
+const fetchCourse = (data) => {
+  return {
+    type: FETCH_COURSE_SUCCESS,
+    data,
+  }
+}
+
+export { selectCourse, unSelectCourse, fetchCourse };
