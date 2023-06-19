@@ -45,8 +45,14 @@ const loginRequest = (email, password) => {
   return (dispatch) => {
     dispatch(login(email, password));
     return fetch('http://localhost:8080/login-success.json')
-      .then((res) => res.json())
-      .then((json) => dispatch(loginSuccess()))
+      .then((res) => 
+      {
+        if (res.status <= 301) {
+          dispatch(loginSuccess());
+        } else {
+          dispatch(loginFailure());
+        }
+      })
       .catch((err) => dispatch(loginFailure()));
   };
 };
