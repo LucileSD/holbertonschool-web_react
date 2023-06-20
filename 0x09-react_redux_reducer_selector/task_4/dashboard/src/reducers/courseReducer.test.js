@@ -1,5 +1,7 @@
 import { courseReducer } from "./courseReducer";
 import { fetchCourse, selectCourse, unSelectCourse } from "../actions/courseActionCreators";
+import { coursesNormalizer } from "../schema/courses";
+import { Map, fromJS } from 'immutable';
 
 describe('tests for courseReducer', () => {
   const dataTest = [
@@ -23,9 +25,8 @@ describe('tests for courseReducer', () => {
     }
   ]
   it('should return an empty array', () => {
-    const datTest = []
-    const testReducerCourse = courseReducer(datTest, fetchCourse([]));
-    expect(testReducerCourse).toEqual([]);
+    const testReducerCourse = courseReducer(undefined, '');
+    expect(testReducerCourse).toEqual(Map([]));
   });
 
   it('should return the data passed with FETCH_COURSE ACTION', () => {
@@ -46,32 +47,12 @@ describe('tests for courseReducer', () => {
         credit: 40
       }
     ]
-    const testReducerCourse = courseReducer(datTest, fetchCourse(datTest));
-    expect(testReducerCourse).toEqual([
-      {
-        id: 1,
-        name: "ES6",
-        isSelected: false,
-        credit: 60
-      },
-      {
-        id: 2,
-        name: "Webpack",
-        isSelected: false,
-        credit: 20
-      },
-      {
-        id: 3,
-        name: "React",
-        isSelected: false,
-        credit: 40
-      }
-    ])
+    const testReducerCourse = courseReducer(Map(datTest), fetchCourse(datTest));
+    expect(testReducerCourse.toJS()).toEqual(coursesNormalizer(dataTest))
   });
 
   it('should return the right data updated with SELECT_COURSE action', () => {
-    const testReducer = courseReducer(dataTest, selectCourse(2));
-    expect(testReducer).toEqual([
+    const dataExpected = [
       {
         id: 1,
         name: "ES6",
@@ -90,12 +71,14 @@ describe('tests for courseReducer', () => {
         isSelected: false,
         credit: 40
       }
-    ])
+    ];
+    const testReducer = courseReducer(fromJS(coursesNormalizer(dataTest)), selectCourse(2));
+    expect(testReducer.toJS()).toEqual(coursesNormalizer(dataExpected));
   });
 
   it('should return the right data updated with UNSELECT_COURSE action', () => {
-    const testReducer = courseReducer(dataTest, unSelectCourse(2));
-    expect(testReducer).toEqual([
+    const testReducer = courseReducer(fromJS(coursesNormalizer(dataTest)), unSelectCourse(2));
+    expect(testReducer.toJS()).toEqual(coursesNormalizer([
       {
         id: 1,
         name: "ES6",
@@ -114,6 +97,6 @@ describe('tests for courseReducer', () => {
         isSelected: false,
         credit: 40
       }
-    ])
+    ]))
   });
 })
