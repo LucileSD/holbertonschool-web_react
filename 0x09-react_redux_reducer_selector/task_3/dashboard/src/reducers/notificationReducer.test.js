@@ -1,9 +1,9 @@
-import { notifReducer } from "../notificationReducer";
+import { notifReducer } from "./notificationReducer";
 import {
   markAsAread,
   setNotificationFilter,
   fetchNotifications
-} from "../../actions/notificationActionCreators";
+} from "../actions/notificationActionCreators";
 
 describe('tests for botifReducer', () => {
   const dataTest = [
