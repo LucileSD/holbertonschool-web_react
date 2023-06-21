@@ -38,6 +38,7 @@ describe('tests for notifReducer', () => {
           ...normalizedData
       }
     };
+
   it('should send the good data with FETCH action', () => {
     const expectedState = {
       filter: 'DEFAULT',
