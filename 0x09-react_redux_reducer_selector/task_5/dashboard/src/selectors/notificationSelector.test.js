@@ -42,6 +42,12 @@ describe('tests for notification selectors', () => {
     expect(filterSelected).toEqual('DEFAULT');
   });
 
+  it('should select state.filter with filterTypeSelected when Map(state)', () => {
+    const StateReduce = notifReducer(Map(previousState), action);
+    const filterSelected = filterTypeSelected(StateReduce.toJS());
+    expect(filterSelected).toEqual('DEFAULT');
+  })
+
   it('should return a list of messages', () => {
     const StateReduce = notifReducer(Map(previousState), action);
     const getNotif = getNotifications(StateReduce);
