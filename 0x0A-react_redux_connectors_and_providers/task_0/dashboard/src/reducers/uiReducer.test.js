@@ -1,4 +1,4 @@
-import { reducer } from './uiReducer';
+import { uiReducer } from './uiReducer';
 import { displayNotificationDrawer } from '../actions/uiActionCreators';
 import { Map } from 'immutable';
 
@@ -9,7 +9,7 @@ describe('test for reducer function', () => {
     user: {},
   })
   it('should equal the initial state when no action is passed', () => {
-    const testReducer = reducer(previousState, '');
+    const testReducer = uiReducer(previousState, '');
     expect(testReducer.get('isNotificationDrawerVisible')).toEqual(false);
     expect(testReducer.get('isUserLoggedIn')).toEqual(false);
   });
@@ -18,7 +18,7 @@ describe('test for reducer function', () => {
     const action = {
       type: 'SELECT_COURSE',
     };
-    const testReducer = reducer(previousState, action).toJS();
+    const testReducer = uiReducer(previousState, action).toJS();
     expect(testReducer).toEqual({
       isNotificationDrawerVisible: false,
       isUserLoggedIn: false,
@@ -27,7 +27,7 @@ describe('test for reducer function', () => {
   });
 
   it('should change correctly the isNotificationDrawerVisible property,  when the action DISPLAY_NOTIFICATION_DRAWER is passed', () => {
-    const testReducer = reducer(previousState, displayNotificationDrawer());
+    const testReducer = uiReducer(previousState, displayNotificationDrawer());
     expect(testReducer.get('isNotificationDrawerVisible')).toEqual(true);
     expect(testReducer.get('isUserLoggedIn')).toEqual(false);
   });

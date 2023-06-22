@@ -16,7 +16,7 @@ export const initialState = immutableState({
   user: {},
 });
 
-export const reducer = (state = initialState, action) => {
+export const uiReducer = (state = initialState, action) => {
   switch(action.type) {
     case DISPLAY_NOTIFICATION_DRAWER:
       return state.set('isNotificationDrawerVisible', true);

@@ -10,6 +10,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 import { AppContext } from './AppContext';
+import { connect } from 'react-redux';
 
 const listCourses = [
   {id: 1, name: 'ES6', credit: 60},
@@ -23,7 +24,7 @@ const listNotifications = [
   { id: 3, html: { __html: getLatestNotification() }, type: 'urgent' },
 ]
 
-class App extends React.Component {
+export class App extends React.Component {
   constructor(props) {
     super(props);
     this.handleKey = this.handleKey.bind(this);
@@ -148,4 +149,10 @@ const style = StyleSheet.create({
   },
 });
 
-export default App;
+export const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: state.get('isUserLoggedIn')
+  }
+};
+
+export const connected = connect(mapStateToProps)(App);
