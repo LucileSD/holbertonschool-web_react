@@ -25,12 +25,11 @@ const listNotifications = [
   { id: 3, html: { __html: getLatestNotification() }, type: 'urgent' },
 ]
 
-export class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.handleKey = this.handleKey.bind(this);
     this.state = {
-      /*displayDrawer: false,*/
       user: {
         email: '',
         password:'',
@@ -39,8 +38,6 @@ export class App extends React.Component {
       logOut: this.logOut,
       listNotifications: listNotifications,
     };
-    /*this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
-    this.handleHideDrawer = this.handleHideDrawer.bind(this);*/
   }
 
   componentDidMount() {
@@ -54,14 +51,6 @@ export class App extends React.Component {
       this.state.logOut();
     }
   }
-
-  /*handleDisplayDrawer() {
-    this.setState({ displayDrawer: true })
-  }*/
-
-  /*handleHideDrawer() {
-    this.setState({ displayDrawer: false })
-  }*/
 
   logIn = (email, password) => {
     this.setState({ user: {
