@@ -68,23 +68,23 @@ describe('<App />', () => {
     jest.restoreAllMocks();
   });
 
-  it('should have a default state for displayDrawer to false', () => {
+  /*it('should have a default state for displayDrawer to false', () => {
     const wrapper = shallow(<App/>);
     expect(wrapper.state('displayDrawer')).toEqual(false);
-  });
+  });*/
 
-  it('should have a state for displayDrawer to true after handleDisplayDrawer call', () => {
+  /*it('should have a state for displayDrawer to true after handleDisplayDrawer call', () => {
     const wrapper = shallow(<App/>);
     wrapper.instance().handleDisplayDrawer();
     expect(wrapper.state('displayDrawer')).toEqual(true);
-  });
+  });*/
 
-  it('should have a state for displayDrawer to false after handleHideDrawer call', () => {
+  /*it('should have a state for displayDrawer to false after handleHideDrawer call', () => {
     const wrapper = shallow(<App/>);
     wrapper.setState({ displayDrawer: true });
     wrapper.instance().handleHideDrawer();
     expect(wrapper.state('displayDrawer')).toEqual(false);
-  });
+  });*/
 
   it('should updates the state when logIn is called', () => {
     const wrapper = mount(<App/>);
@@ -106,10 +106,12 @@ describe('<App />', () => {
 
   it('should test mapStateToProps and return an object', () => {
     const state = Map({
-      isUserLoggedIn: true
+      isUserLoggedIn: true,
+      isNotificationDrawerVisible: false
     });
     const expected = {
-      isLoggedIn: true
+      isLoggedIn: true,
+      displayDrawer: false
     };
     const mapState = mapStateToProps(state);
     expect(mapState).toEqual(expected);
