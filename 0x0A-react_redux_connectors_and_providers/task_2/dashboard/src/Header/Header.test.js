@@ -1,58 +1,42 @@
-import React from 'react';
-import { mount, shallow } from 'enzyme';
-import { StyleSheetTestUtils } from 'aphrodite';
-import Header from './Header';
-import { user, logOut, AppContext } from '../App/AppContext';
+import { shallow } from "enzyme";
+import React from "react";
+import { Header } from "./Header";
+import { StyleSheetTestUtils } from "aphrodite";
 
-describe('<Header />', () => {
-  beforeEach(() => {
+const USER = { email: "de@de.de", password: "123" };
+
+describe("<Header />", () => {
+  beforeAll(() => {
     StyleSheetTestUtils.suppressStyleInjection();
   });
-
-  it('renders without craching', () => {
-    shallow(<Header />);
-  });
-
-  it('renders an img tag', () => {
-    const wrapper = shallow(<Header />);
-    expect(wrapper.find('img')).toHaveLength(1);
-  });
-
-  it('renders a h1 tag', () => {
-    const wrapper = shallow(<Header />);
-    expect(wrapper.find('h1')).toHaveLength(1);
-  });
-
-  it('should not create logoutSection', () => {
-    const wrapper = mount(
-      <AppContext.Provider value={{ user, logOut }}>
-          <Header />
-      </AppContext.Provider>);
-    expect(wrapper.find('#logoutSection')).toHaveLength(0);
-  });
-
-  it('should not created logoutSection', () => {
-    const wrapper = mount(
-      <AppContext.Provider value={{ user: { ...user, isLoggedIn: true}, logOut }}>
-          <Header />
-      </AppContext.Provider>
-    );
-    expect(wrapper.find("#logoutSection")).toHaveLength(1);
-  });
-
-  it('should call logOut', () => {
-    const logOut = jest.fn();
-    const wrapper = mount(
-      <AppContext.Provider value={{ user: { ...user, isLoggedIn: true}, logOut }}>
-          <Header />
-      </AppContext.Provider>
-    );
-    wrapper.find('span').simulate('click');
-    expect(logOut).toHaveBeenCalled();
-    jest.restoreAllMocks();
-  })
-
-  afterEach(() => {
+  afterAll(() => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
   });
-})
+
+  it("Header renders without crashing", () => {
+    const wrapper = shallow(<Header />);
+    expect(wrapper.exists()).toEqual(true);
+  });
+  it("Verify that the components render img", () => {
+    const wrapper = shallow(<Header user={USER} />);
+    wrapper.update();
+    expect(wrapper.find("div img")).toHaveLength(1);
+  });
+  it("Verify that the components render h1", () => {
+    const wrapper = shallow(<Header user={USER} />);
+    wrapper.update();
+    expect(wrapper.find("div h1")).toHaveLength(1);
+  });
+
+  it("mounts the Header component with a default context value. The logoutSection is not created", () => {
+    const wrapper = shallow(<Header />);
+
+    expect(wrapper.find("#logoutSection")).toHaveLength(0);
+  });
+
+  it("mounts the Header component with a user defined (isLoggedIn is true and an email is set). The logoutSection is created", () => {
+    const wrapper = shallow(<Header user={USER} />);
+
+    expect(wrapper.find("#logoutSection")).toHaveLength(1);
+  });
+});

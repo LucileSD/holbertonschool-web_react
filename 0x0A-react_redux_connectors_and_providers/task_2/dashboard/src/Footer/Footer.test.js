@@ -1,44 +1,28 @@
-import React from 'react';
-import { mount, shallow } from 'enzyme';
-import { AppContext, user, logOut } from '../App/AppContext';
-import Footer from './Footer';
-import { StyleSheetTestUtils } from 'aphrodite';
+import { shallow } from "enzyme";
+import React from "react";
+import { Footer } from "./Footer";
 
-describe('<Footer />', () => {
-  beforeEach(() => {
-    StyleSheetTestUtils.suppressStyleInjection();
-  });
-
-  it('renders without craching', () => {
-    shallow(<Footer />);
-  });
-
-  it('Verify that the components at the very least render the text “Copyright”', () => {
+describe("<Footer />", () => {
+  it("Footer renders without crashing", () => {
     const wrapper = shallow(<Footer />);
-    expect(wrapper.text().includes('Copyright')).toBe(true);
+    expect(wrapper.exists()).toEqual(true);
+  });
+  it("Verify that the components at the very least render the text “Copyright”", () => {
+    const wrapper = shallow(<Footer />);
+    expect(wrapper.find(".App-footer p")).toHaveLength(1);
+    expect(wrapper.find(".App-footer p").text()).toContain("Copyright");
   });
 
-  it('should display "contact us" when user is logged', () => {
-    const wrapper = mount(
-      <AppContext.Provider value={{ user: { ...user, isLoggedIn: true}, logOut }}>
-        <Footer />
-      </AppContext.Provider>
+  it("verify that the link is not displayed when the user is logged out within the context", () => {
+    const wrapper = shallow(<Footer user={null} />);
+    expect(wrapper.find(".App-footer a")).toHaveLength(0);
+  });
+
+  it("verify that the link is displayed when the user is logged in within the context", () => {
+    const wrapper = shallow(
+      <Footer user={{ email: 'de@de.de', password: "123456" }} />
     );
-    expect(wrapper.find('p')).toHaveLength(2);
-    expect(wrapper.find('a').text()).toEqual('Contact us');
+    expect(wrapper.find(".App-footer a")).toHaveLength(1);
+    expect(wrapper.find(".App-footer a").text()).toEqual("Contact us");
   });
-
-  it('should display "contact us" when user is logged', () => {
-    const wrapper = mount(
-      <AppContext.Provider value={{ user, logOut }}>
-        <Footer />
-      </AppContext.Provider>
-    );
-    expect(wrapper.find('p')).toHaveLength(1);
-    expect(wrapper.find('a')).toHaveLength(0);
-  });
-
-  afterEach(() => {
-    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-  });
-})
+});
