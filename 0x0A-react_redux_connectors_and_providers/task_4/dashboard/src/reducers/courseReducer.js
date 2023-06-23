@@ -6,9 +6,9 @@ import {
 import { Map, setIn, merge } from 'immutable';
 import { coursesNormalizer } from "../schema/courses";
 
-const initialState = [];
+export const initialCourseState = [];
 
-export const courseReducer = (state = Map(initialState), action) => {
+export const courseReducer = (state = Map(initialCourseState), action) => {
   switch(action.type) {
     case FETCH_COURSE_SUCCESS:
       const neWData = action.data.map((course) => {

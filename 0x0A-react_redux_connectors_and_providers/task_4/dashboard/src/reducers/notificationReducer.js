@@ -11,12 +11,12 @@ const immutableState = (object) => {
   return Map(object)
 };
 
-const initialState = immutableState({
+export const initialNotificationState = immutableState({
   notifications: [],
   filter: NotificationTypeFilters.DEFAULT,
 });
 
-export const notifReducer = (state = initialState, action) => {
+export const notifReducer = (state = initialNotificationState, action) => {
   switch(action.type) {
     case FETCH_NOTIFICATIONS_SUCCESS:
       const normalizeData = notificationsNormalizer(action.data);
@@ -31,6 +31,6 @@ export const notifReducer = (state = initialState, action) => {
     case SET_TYPE_FILTER:
       return state.set('filter', action.filter);
 
-    default: state;
+    default: return state;
   }
 }

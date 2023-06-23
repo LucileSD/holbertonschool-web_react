@@ -7,9 +7,12 @@ import { Provider } from 'react-redux';
 import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from '@redux-devtools/extension';
+import rootReducer from './reducers/rootReducer';
+
+import { combineReducers } from 'redux';
 
 const middleware = [thunk];
-export const store = createStore(uiReducer, composeWithDevTools(applyMiddleware(...middleware)));
+export const store = createStore(combineReducers(rootReducer), composeWithDevTools(applyMiddleware(...middleware)));
 
 const root = document.getElementById('root');
 ReactDOM.render(
