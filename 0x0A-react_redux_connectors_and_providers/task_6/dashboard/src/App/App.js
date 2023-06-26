@@ -163,11 +163,13 @@ export const mapStateToProps = (state) => {
   }
 };
 
-export const mapDispatchToProps = {
-    displayNotificationDrawer,
-    hideNotificationDrawer,
-    login: loginRequest,
-    logout
+export const mapDispatchToProps = (dispatch) => {
+  return {
+      displayNotificationDrawer: () => dispatch(displayNotificationDrawer()),
+      hideNotificationDrawer: () => dispatch(hideNotificationDrawer()),
+      login: (email, password) => dispatch(loginRequest(email, password)),
+      logout: () => dispatch(logout())
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

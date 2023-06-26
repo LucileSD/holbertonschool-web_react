@@ -21,12 +21,6 @@ export const setNotificationFilter = (filter) => {
   };
 };
 
-/*export const fetchNotifications = (data) => {
-  return {
-    type: FETCH_NOTIFICATIONS_SUCCESS,
-    data,
-  };
-};*/
 
 export const setLoadingState = (loadingState) => {
   return {
