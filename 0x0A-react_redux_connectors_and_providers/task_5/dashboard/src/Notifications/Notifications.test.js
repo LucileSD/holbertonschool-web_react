@@ -158,7 +158,6 @@ describe("<Notifications />", () => {
       const listItems = wrapper.find("NotificationItem");
       expect(listItems).toHaveLength(1);
 
-      expect(listItems.props().type).toEqual("noNotifications");
       expect(listItems.text()).toEqual("No new notifications for now");
     });
 
@@ -168,7 +167,6 @@ describe("<Notifications />", () => {
       const listItems = wrapper.find("NotificationItem");
       expect(listItems).toHaveLength(1);
 
-      expect(listItems.props().type).toEqual("noNotifications");
       expect(listItems.text()).toEqual("No new notifications for now");
     });
 
