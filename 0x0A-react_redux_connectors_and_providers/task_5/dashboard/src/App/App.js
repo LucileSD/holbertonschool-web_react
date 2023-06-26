@@ -18,11 +18,11 @@ const listCourses = [
   {id: 3, name: 'React', credit: 40}
 ];
 
-export const listNotifications = [
+/*export const listNotifications = [
   { id: 1, value: 'New course available', type: 'default' },
   { id: 2, value: 'New resume available', type: 'urgent' },
   { id: 3, html: { __html: getLatestNotification() }, type: 'urgent' },
-]
+]*/
 
 export class App extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ export class App extends React.Component {
         /*isLoggedIn: false,*/
       },
       /*logOut: this.logOut,*/
-      listNotifications: listNotifications,
+      /*listNotifications: listNotifications,*/
     };
   }
 
@@ -67,12 +67,12 @@ export class App extends React.Component {
     } })
   }*/
 
-  markNotificationAsRead = (id) => {
+  /*markNotificationAsRead = (id) => {
     const newList = this.state.listNotifications.filter((element) => {
       return element.id !== id;
     });
     this.setState({ listNotifications: newList });
-  }
+  }*/
 
   componentWillUnmount() {
     window.removeEventListener('keydown', this.handleKey);
@@ -83,8 +83,7 @@ export class App extends React.Component {
     const { displayDrawer, isLoggedIn, displayNotificationDrawer, hideNotificationDrawer, login } = this.props;
     return (
       <>
-        <Notifications listNotifications={listNotifications}
-                       displayDrawer={displayDrawer}
+        <Notifications displayDrawer={displayDrawer}
                        handleDisplayDrawer={displayNotificationDrawer}
                        handleHideDrawer={hideNotificationDrawer}
                        markNotificationAsRead={this.markNotificationAsRead}/>

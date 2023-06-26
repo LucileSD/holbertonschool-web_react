@@ -1,4 +1,4 @@
-import rootReducer, {initialState} from "./rootReducer";
+import rootReducer from "./rootReducer";
 import { combineReducers } from 'redux';
 import { Map } from 'immutable';
 
@@ -7,8 +7,9 @@ describe('test for rootReducer', () => {
     const expectedState = {
       courses: Map({}),
       notifications: Map({
-        "notifications": [],
-        "filter": "DEFAULT"
+        "notifications": {},
+        "filter": "DEFAULT",
+        "loadingState": false
       }),
       ui: Map({
         "isNotificationDrawerVisible": false,

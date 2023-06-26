@@ -15,14 +15,14 @@ describe('<NotificationItem />', () => {
   });
 
   it('should log to the console a string with appropriate id', () => {
-    const id = 1;
+    const id = '1';
     const wrapper = shallow(<NotificationItem type='default' value='test' id={id}/>);
     const instance = wrapper.instance();
     instance.markAsRead = jest.fn();
     const listItem = wrapper.find('li').first();
     listItem.simulate('click');
     instance.markAsRead(id);
-    expect(instance.markAsRead).toHaveBeenCalledWith(1);
+    expect(instance.markAsRead).toHaveBeenCalledWith('1');
     jest.restoreAllMocks();
   });
 })

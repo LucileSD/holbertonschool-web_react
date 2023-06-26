@@ -26,7 +26,7 @@ class NotificationItem extends React.PureComponent {
 }
 
 NotificationItem.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   type: PropTypes.string,
   value: PropTypes.string,
   html: PropTypes.shape({ __html: PropTypes.string }),
