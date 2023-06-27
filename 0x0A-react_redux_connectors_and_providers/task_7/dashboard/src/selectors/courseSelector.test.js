@@ -1,4 +1,4 @@
-import { getAllCourses } from "./courseSelector";
+import { getListCourses } from "./courseSelector";
 import { courseReducer } from "../reducers/courseReducer";
 
 describe('test getAllCourses', () => {
@@ -50,7 +50,7 @@ describe('test getAllCourses', () => {
     };
 
     initialState.courses = courseReducer(undefined, action);
-    const courses = getAllCourses(initialState);
+    const courses = getListCourses(initialState);
     expect(courses.toJS()).toEqual(expected);
   });
 })
