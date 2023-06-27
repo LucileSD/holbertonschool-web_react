@@ -3,9 +3,9 @@ import closeIcon from '../assets/close-icon.png';
 import NotificationItem from './NotificationItem';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
-import { fetchNotifications, markAsAread } from "../actions/notificationActionCreators";
+import { fetchNotifications, markAsAread, setNotificationFilter } from "../actions/notificationActionCreators";
 import { connect } from 'react-redux';
-import { getUnreadNotifications } from '../selectors/notificationSelector';
+import { getUnreadNotificationsByType } from '../selectors/notificationSelector';
 
 
 export class Notifications extends React.Component {
@@ -25,7 +25,8 @@ export class Notifications extends React.Component {
               <button id='closeButton' aria-label='Close' style={{float: 'right', border: 'none'}} onClick={this.props.handleHideDrawer}><img src={closeIcon} alt='close' className={css(styles.imgButton)}></img></button>
 
               <p className={css(styles.menuItemP)}>Here is the list of notifications</p>
-              
+              <button type='button' onClick={() => this.props.setNotificationFilter('URGENT')}>‼️</button>
+              <button type='button' onClick={() => this.props.setNotificationFilter('DEFAULT')}>?</button>
               <ul className={css(styles.smallUl)}>
                 {!this.props.listNotifications && (<NotificationItem>(
                 <p className={css(styles.menuItemP)}>No new notification for now</p>
@@ -33,11 +34,11 @@ export class Notifications extends React.Component {
                 {this.props.listNotifications && 
                 this.props.listNotifications.valueSeq().map((notif) => (
                   <NotificationItem
-                    id={notif.guid || notif.id}
-                    key={notif.guid || notif.id}
-                    html={notif.html}
-                    type={notif.type}
-                    value={notif.value}
+                    id={notif.get('guid') || notif.get('id')}
+                    key={notif.get('guid') || notif.get('id')}
+                    html={notif.get('html')}
+                    type={notif.get('type')}
+                    value={notif.get('value')}
                     markAsRead={this.props.markNotificationAsRead}/>
                 ))}
                </ul>
@@ -54,6 +55,7 @@ Notifications.propTypes = {
   handleHideDrawer: PropTypes.func,
   markNotificationAsRead: PropTypes.func,
   fetchNotifications: PropTypes.func,
+  setNotificationFilter: PropTypes.func,
 };
 
 Notifications.defaultProps = {
@@ -63,6 +65,7 @@ Notifications.defaultProps = {
   handleHideDrawer: () => {},
   markNotificationAsRead: () => {},
   fetchNotifications: () => {},
+  setNotificationFilter: () => {},
 };
 
 const opac = {
@@ -154,16 +157,17 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  const unreadNotif = getUnreadNotifications(state);
+  const unreadNotifBytype = getUnreadNotificationsByType(state);
   return {
-    listNotifications: unreadNotif,
+    listNotifications: unreadNotifBytype,
   }
 };
 
 export const mapDispatchToProps = (dispatch) => {
   return {
       fetchNotifications: () => dispatch(fetchNotifications()),
-      markNotificationAsRead: (id) => dispatch(markAsAread(id))
+      markNotificationAsRead: (id) => dispatch(markAsAread(id)),
+      setNotificationFilter: (filter) => dispatch(setNotificationFilter(filter)),
   };
 };
 
