@@ -4,7 +4,7 @@ import {
   getUnreadNotifications
 } from "./notificationSelector";
 import { notificationReducer } from '../reducers/notificationReducer';
-import { Map } from 'immutable';
+import { Map, fromJS } from 'immutable';
 import { FETCH_NOTIFICATIONS_SUCCESS } from "../actions/notificationActionTypes";
 
 describe('tests for notification selectors', () => {
@@ -56,10 +56,40 @@ describe('tests for notification selectors', () => {
   });
 
   it('should return a list of unread messages', () => {
-    const StateReduce = notificationReducer(Map(previousState), action);
-    const getUnread = getUnreadNotifications(StateReduce);
-    const listNotif = [previousState.notifications[0], previousState.notifications[1]];
-    const expected = Map(listNotif);
-    expect(getUnread).toEqual(expected);
+    const state = {
+      notifications: Map({
+        messages: {
+          1: {
+            guid: 1,
+            type: "default",
+            value: "New course available",
+            isRead: true,
+          },
+          2: {
+            guid: 2,
+            type: "urgent",
+            value: "New resume available",
+            isRead: false,
+          },
+          3: {
+            guid: 3,
+            type: "urgent",
+            html: { __html: "xxx" },
+            isRead: true,
+          },
+        },
+      }),
+    };
+
+    const expectedResult = [
+      {
+        guid: 2,
+        type: "urgent",
+        value: "New resume available",
+        isRead: false,
+      },
+    ];
+    const selected = getUnreadNotifications(state);
+    expect(selected.toJS()).toEqual(expectedResult);
   })
 })
