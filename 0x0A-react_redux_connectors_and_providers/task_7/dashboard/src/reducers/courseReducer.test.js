@@ -1,5 +1,5 @@
 import { courseReducer } from "./courseReducer";
-import { fetchCourse, selectCourse, unSelectCourse } from "../actions/courseActionCreators";
+import { setCourses, selectCourse, unSelectCourse } from "../actions/courseActionCreators";
 import { coursesNormalizer } from "../schema/courses";
 import { Map, fromJS } from 'immutable';
 
@@ -47,7 +47,7 @@ describe('tests for courseReducer', () => {
         credit: 40
       }
     ]
-    const testReducerCourse = courseReducer(Map(datTest), fetchCourse(datTest));
+    const testReducerCourse = courseReducer(Map(datTest), setCourses(datTest));
     expect(testReducerCourse.toJS()).toEqual(coursesNormalizer(dataTest))
   });
 

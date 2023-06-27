@@ -1,4 +1,5 @@
 import { SELECT_COURSE, UNSELECT_COURSE, FETCH_COURSE_SUCCESS } from "./courseActionTypes";
+import 'node-fetch';
 
 const selectCourse = (index) => {
   return {
@@ -14,11 +15,20 @@ const unSelectCourse = (index) => {
   }
 }
 
-const fetchCourse = (data) => {
+const setCourses = (data) => {
   return {
     type: FETCH_COURSE_SUCCESS,
     data,
   }
 }
 
-export { selectCourse, unSelectCourse, fetchCourse };
+const fetchCourses = () => {
+  return (dispatch) => {
+    return fetch('http://localhost:8080/courses.json')
+      .then((res) => res.json())
+      .then((data) => dispatch(setCourses(data)))
+      .catch((error) => console.log(error))
+  }
+}
+
+export { selectCourse, unSelectCourse, fetchCourses, setCourses };
