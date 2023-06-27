@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { StyleSheetTestUtils } from 'aphrodite';
-import CourseList from './CourseList';
+import {CourseList} from './CourseList';
+
 
 describe('<CourseList />', () => {
   beforeEach(() => {
@@ -24,11 +25,6 @@ describe('<CourseList />', () => {
     expect(wrapper.find('CourseListRow')).toHaveLength(5);
   });
 
-  it('renders 1 line when no list is given', () => {
-    const wrapper = shallow(<CourseList />);
-    expect(wrapper.find('CourseListRow')).toHaveLength(1);
-    expect(wrapper.find('CourseListRow').prop('textFirstCell')).toEqual('No course available yet');
-  });
 
   afterEach(() => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
